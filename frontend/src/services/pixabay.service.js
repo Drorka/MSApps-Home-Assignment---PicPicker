@@ -405,28 +405,33 @@ const hardCodedPhotos = [
 
 const STORAGE_KEY = 'photos'
 const photos = _loadFromStorage(STORAGE_KEY) || null
-const API_KEY = 'JRY734h_KdVD-02lIwlrBk6TQnUCv29JyIqGjCYYVrE'
+const API_KEY = '25540812-faf2b76d586c1787d2dd02736'
 
-async function query(searchTxt) {
+async function query(category, page) {
 	// * for dev purposes
-	return hardCodedPhotos
+	// return hardCodedPhotos
 
 	// * real function
-	if (!searchTxt && photos) return photos
-	let URL = `https://api.unsplash.com/photos/random?count=30${
-		searchTxt ? `&query=${searchTxt}` : ''
-	}&client_id=${API_KEY}`
+	// use available photos from local storage instead of calling the API
+	if (photos) return photos
+
+	let URL = `https://pixabay.com/api/?key=${API_KEY}&q=${category}&page=${page}&per_page=9`
 
 	try {
+		console.log('pixabay service try')
 		const response = await axios.get(URL)
-		const { data } = response
-		const photos = data.map((photo) => ({
-			backgroundColor: photo.color,
-			background: photo.urls.full,
-			thumbnail: photo.urls.small,
+		const { hits } = response.data
+		const photos = hits.map((photo) => ({
+			id: photo.id,
+			type: photo.type,
+			tags: photo.tags,
+			previewURL: photo.previewURL,
+			largeImageURL: photo.largeImageURL,
+			views: photo.views,
+			downloads: photo.downloads,
+			collections: photo.collections,
 		}))
 		_saveToStorage(STORAGE_KEY, photos)
-		console.log(photos)
 		return photos
 	} catch (err) {
 		console.error('ERROR in getting photos!', err)
