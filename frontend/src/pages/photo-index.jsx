@@ -24,25 +24,18 @@ export function PhotoIndex() {
 			case 'photo':
 				setIsPhotoModalOpen(!isPhotoModalOpen)
 				break
-
 			default:
 				break
 		}
 	}
 
-	function onToggleCategoryModal() {
-		setIsCategoryModalOpen(!isCategoryModalOpen)
-	}
-
 	function onCategoryChoice(categoryChoice) {
-		console.log(categoryChoice)
 		setFilterBy((prevFilter) => ({ ...prevFilter, category: categoryChoice }))
 		setIsCategoryModalOpen(false)
 	}
 
 	function onPageChange(diff) {
 		if (filterBy.pageNumber === 1 && diff === -1) return
-		// if (filterBy.pageNumber === 5 && diff === +1) return
 		setFilterBy((prevFilter) => ({
 			...prevFilter,
 			pageNumber: prevFilter.pageNumber + diff,
@@ -50,7 +43,6 @@ export function PhotoIndex() {
 	}
 
 	function onPhoto(photoId) {
-		console.log('herro photo', photoId)
 		const currentPhoto = photos.find((photo) => photo.id === photoId)
 		setPhoto(currentPhoto)
 		setIsPhotoModalOpen(true)
@@ -61,7 +53,6 @@ export function PhotoIndex() {
 			<section className="photo-actions">
 				<button onClick={() => onPageChange(-1)}>Prev</button>
 				<button onClick={() => onToggleModal('category')}>Categories</button>
-				{/* <button onClick={onToggleCategoryModal}>Categories</button> */}
 				<button onClick={() => onPageChange(+1)}>Next</button>
 			</section>
 			<section className="photo-container">
@@ -70,7 +61,10 @@ export function PhotoIndex() {
 			{isCategoryModalOpen && (
 				<div className="modal-overlay">
 					<div className="category-modal">
-						<button onClick={onToggleCategoryModal} className="close-modal">
+						<button
+							onClick={() => onToggleModal('category')}
+							className="close-modal"
+						>
 							X
 						</button>
 						<span>Select Category:</span>
@@ -88,24 +82,9 @@ export function PhotoIndex() {
 					</div>
 				</div>
 			)}
-			{
-				isPhotoModalOpen && (
-					<PhotoDetails photo={photo} onToggleModal={onToggleModal} />
-				)
-				// (
-				// 	<div className="modal-overlay">
-				// 		<div className="photo-modal">
-				// 			<button
-				// 				onClick={() => onToggleModal('photo')}
-				// 				className="close-modal"
-				// 			>
-				// 				X
-				// 			</button>
-				// 			<span>Picture Data</span>
-				// 		</div>
-				// 	</div>
-				// )
-			}
+			{isPhotoModalOpen && (
+				<PhotoDetails photo={photo} onToggleModal={onToggleModal} />
+			)}
 			<span className="page-number">{filterBy.pageNumber}</span>
 		</div>
 	)

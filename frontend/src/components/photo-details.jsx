@@ -3,7 +3,6 @@ import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 
 export function PhotoDetails({ photo, onToggleModal }) {
-	console.log(photo)
 	let { downloads, views, collections } = photo
 
 	const formattedDownloads = downloads.toLocaleString('en-US')
@@ -42,7 +41,7 @@ export function PhotoDetails({ photo, onToggleModal }) {
 							</div>
 						</div>
 					</section>
-					<img src={photo.largeImageURL} alt="photo" />
+					<img src={photo.largeImageURL} alt={photo.tags} />
 				</section>
 			</div>
 		</div>
