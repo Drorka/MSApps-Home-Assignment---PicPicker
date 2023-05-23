@@ -3,7 +3,6 @@ const photoService = require('./photo.service.js')
 const logger = require('../../services/logger.service.js')
 
 async function getPhotos(req, res) {
-	console.log('herro controller')
 	try {
 		logger.debug('Getting Photos')
 		console.log('req.query', req.query)

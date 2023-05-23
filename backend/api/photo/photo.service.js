@@ -19,20 +19,6 @@ async function query(filterBy) {
 	}
 }
 
-// async function query(filterBy = { txt: '' }) {
-// 	try {
-// 		const criteria = {
-// 			vendor: { $regex: filterBy.txt, $options: 'i' },
-// 		}
-// 		const collection = await dbService.getCollection('photo')
-// 		var photos = await collection.find(criteria).toArray()
-// 		return photos
-// 	} catch (err) {
-// 		logger.error('cannot find photos', err)
-// 		throw err
-// 	}
-// }
-
 module.exports = {
 	query,
 }
