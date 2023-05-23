@@ -1,30 +1,36 @@
 .app-header {
     background-color: $dark-teal;
     color: $whiteish;
-    padding: 10px;
+    padding: 10px 0;
     height: 8vh;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 20px 1fr 20px;
+    > * {
+        grid-column: 2;
+    }
+
+    @include for-narrow-layout {
+        grid-template-columns: 
+            minmax(20px, 1fr)
+            minmax(auto, $mobile-breakpoint)
+            minmax(20px, 1fr);
+    }
+    @include for-normal-layout {
+        grid-template-columns: 
+            minmax(20px, 1fr)
+            minmax(auto, $narrow-breakpoint)
+            minmax(20px, 1fr);
+    }
+    @include for-wide-layout {
+        grid-template-columns: 
+            minmax(20px, 1fr)
+            minmax(auto, $normal-breakpoint)
+            minmax(20px, 1fr);
+    }
+
 
     span {
         font-size: 1.5rem;
         font-weight: 700;
-    }
-
-    nav {
-        font-size: .8em;
-        padding: 5px;
-        display: flex;
-    }
-    
-    nav a {
-        color: $clr6;
-        border-top: 1px solid $clr1;
-        padding: 0 5px;
-        margin: 10px;
-    }
-
-    nav .active {
-        color: $clr6;
     }
 }
