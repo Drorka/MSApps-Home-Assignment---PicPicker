@@ -78,7 +78,7 @@ export function PhotoIndex() {
 				<button onClick={() => onPageChange(-1)}>Prev</button>
 				<button onClick={() => onToggleModal('category')}>Categories</button>
 				<select onChange={onSort} name="order" className="sorting">
-					<option value="popular">Pupularity</option>
+					<option value="popular">Popularity</option>
 					<option value="latest">Date</option>
 				</select>
 				<button onClick={() => onPageChange(+1)}>Next</button>
