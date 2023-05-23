@@ -10,12 +10,12 @@
 @import "basics/base";
 
 // Views
-@import "views/home-page";
+@import "pages/home-page";
+@import "pages/photo-index";
 
 // Components
-@import "cmps/app-header";
-@import "cmps/photo-list";
-@import "cmps/photo-index";
+@import "components/app-header";
+@import "components/photo-list";
 
 
 
