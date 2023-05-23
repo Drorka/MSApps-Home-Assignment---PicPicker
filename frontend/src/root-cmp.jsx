@@ -2,15 +2,15 @@ import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { AppHeader } from './components/app-header'
-import { HomePage } from './pages/home-page.jsx'
+import { PhotoIndex } from './pages/photo-index'
 
 export function RootCmp() {
 	return (
 		<div>
 			<AppHeader />
-			<main>
+			<main className="main-container">
 				<Routes>
-					<Route key="/" exact={true} element={<HomePage />} path="/" />
+					<Route key="/" exact={true} element={<PhotoIndex />} path="/" />
 				</Routes>
 			</main>
 		</div>
