@@ -17,7 +17,6 @@ async function getPhotos(filterBy) {
 		const { hits } = response.data
 		const photos = hits.map((photo) => ({
 			id: photo.id,
-			type: photo.type,
 			tags: photo.tags,
 			previewURL: photo.previewURL,
 			largeImageURL: photo.largeImageURL,
