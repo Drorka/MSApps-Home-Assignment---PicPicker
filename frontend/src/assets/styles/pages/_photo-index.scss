@@ -8,6 +8,11 @@
         margin: 8px 0;
         display: flex;
         gap: 18px;
+
+        .sorting {
+            height: fit-content;
+            align-self: center;
+        }
     }
     
     .photo-container {

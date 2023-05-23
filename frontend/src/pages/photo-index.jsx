@@ -11,7 +11,11 @@ export function PhotoIndex() {
 		(storeState) => storeState.systemModule.isLoading
 	)
 	const [photo, setPhoto] = useState({})
-	const [filterBy, setFilterBy] = useState({ category: 'dogs', pageNumber: 1 })
+	const [filterBy, setFilterBy] = useState({
+		category: 'dogs',
+		pageNumber: 1,
+		order: 'popular',
+	})
 	const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
 	const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false)
 	const categories = ['Animals', 'Dogs', 'Cats', 'Sport', 'Work', 'Clowns']
@@ -46,6 +50,15 @@ export function PhotoIndex() {
 		}))
 	}
 
+	function onSort({ target }) {
+		console.log('herro sort', target)
+		let { value, name: field } = target
+		console.log(value)
+		console.log('filterBy before', filterBy)
+		setFilterBy((prevFilter) => ({ ...prevFilter, [field]: value }))
+		console.log('filterBy after', filterBy)
+	}
+
 	function onPhoto(photoId) {
 		const currentPhoto = photos.find((photo) => photo.id === photoId)
 		setPhoto(currentPhoto)
@@ -64,6 +77,10 @@ export function PhotoIndex() {
 			<section className="photo-actions">
 				<button onClick={() => onPageChange(-1)}>Prev</button>
 				<button onClick={() => onToggleModal('category')}>Categories</button>
+				<select onChange={onSort} name="order" className="sorting">
+					<option value="popular">Pupularity</option>
+					<option value="latest">Date</option>
+				</select>
 				<button onClick={() => onPageChange(+1)}>Next</button>
 			</section>
 			<section className="photo-container">
