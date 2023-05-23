@@ -3,11 +3,6 @@
     font-family: 'Segoe UI';
 }
 
-// ::selection {
-//     background-color: $whiteish;
-//     color: $clr6;
-// }
-
 html {
     font-family: 'Segoe UI';
     line-height: 1.6;
@@ -50,9 +45,9 @@ p {
 a {
     text-decoration: none;
 
-}
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 button {
@@ -72,19 +67,6 @@ button {
     }
     &:active {
         background-color: #d8710a;
-
     }
-}
-
-.btn-link {
-    border:0;
-    background-color: transparent;
-    text-decoration: underline;
-    transition: .5s;
-}
-
-.btn-link:hover {
-    background-color: $clr1;
-    transform: scale(1.1);
 }
 

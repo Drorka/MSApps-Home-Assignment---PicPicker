@@ -79,6 +79,7 @@
         top: 1vh;
         left: 10vw;
         background-color: $aqua;
+        background-color: #FFF;
         width: 80vw;
         height: 90vh;
         padding: 10px 15px 15px 15px;
@@ -123,9 +124,9 @@
             }
 
             img {
-                background-color: #fff;
-                object-fit: cover;
+                object-fit: contain;
                 max-height: 90%;
+                max-width: 90%;
             }
 
         }

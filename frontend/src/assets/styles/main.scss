@@ -1,8 +1,6 @@
 // Setup
 @import "setup/variables";
-@import "setup/functions";
 @import "setup/mixins";
-@import "setup/typography";
 
 // Basics
 @import "basics/helpers";
@@ -10,7 +8,6 @@
 @import "basics/base";
 
 // Views
-@import "pages/home-page";
 @import "pages/photo-index";
 
 // Components
