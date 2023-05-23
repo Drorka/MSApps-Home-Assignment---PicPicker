@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadPhotos } from '../store/photo.actions.js'
+import { loadPhotos, prevPhotos, nextPhotos } from '../store/photo.actions.js'
 import { PhotoList } from '../components/photo-list.jsx'
 
 export function PhotoIndex() {
@@ -10,12 +10,22 @@ export function PhotoIndex() {
 		loadPhotos()
 	}, [])
 
+	function onPrev() {
+		console.log('hi prev')
+		prevPhotos()
+	}
+
+	function onNext() {
+		console.log('hi prev')
+		nextPhotos()
+	}
+
 	return (
 		<div className="photo-index">
 			<section className="photo-actions">
-				<button>Prev</button>
+				<button onClick={onPrev}>Prev</button>
 				<button>Categories</button>
-				<button>Next</button>
+				<button onClick={onNext}>Next</button>
 			</section>
 			<section className="photo-container">
 				<PhotoList photos={photos} />

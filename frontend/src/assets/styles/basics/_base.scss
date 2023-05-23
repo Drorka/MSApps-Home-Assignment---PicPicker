@@ -64,14 +64,15 @@ button {
     border:0;
     border-radius: 3px;
     background-color: $orange;
-    color:whitesmoke;
+    color:$whiteish;
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: #ffae5e;
     }
     &:active {
-        background-color: rgba(0, 0, 0, 0.35);
+        background-color: #d8710a;
+
     }
 }
 
