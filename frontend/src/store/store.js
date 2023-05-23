@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 
-import { carReducer } from './car.reducer.js'
+import { photoReducer } from './photo.reducer.js'
 import { systemReducer } from './system.reducer'
 
 const rootReducer = combineReducers({
-	carModule: carReducer,
+	photoModule: photoReducer,
 	systemModule: systemReducer,
 })
 
