@@ -3,5 +3,19 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
-    gap: 6px;
+    gap: 8px;
+
+    .photo-preview {
+        width: 100%;
+
+        :hover {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all .25s;
+        }
+
+        .preview {
+            border-radius: 8px;
+        }
+    }
 }
