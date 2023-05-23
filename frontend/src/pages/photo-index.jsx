@@ -3,9 +3,13 @@ import { useSelector } from 'react-redux'
 import { loadPhotos } from '../store/photo.actions.js'
 import { PhotoList } from '../components/photo-list.jsx'
 import { PhotoDetails } from '../components/photo-details.jsx'
+import Loader from '../assets/img/loader.svg'
 
 export function PhotoIndex() {
 	const photos = useSelector((storeState) => storeState.photoModule.photos)
+	const isLoading = useSelector(
+		(storeState) => storeState.systemModule.isLoading
+	)
 	const [photo, setPhoto] = useState({})
 	const [filterBy, setFilterBy] = useState({ category: 'dogs', pageNumber: 1 })
 	const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
@@ -47,6 +51,13 @@ export function PhotoIndex() {
 		setPhoto(currentPhoto)
 		setIsPhotoModalOpen(true)
 	}
+
+	if (isLoading)
+		return (
+			<div className="loader-wrapper">
+				<img className="loader" src={Loader} alt="loader" />
+			</div>
+		)
 
 	return (
 		<div className="photo-index">
