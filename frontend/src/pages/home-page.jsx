@@ -1,8 +1,9 @@
 import React from 'react'
+import { PhotoIndex } from '../components/photo-index'
 
 export function HomePage() {
 	return (
-		<section>
+		<section className="home-page">
 			<h1>Welcome to PicPicker!</h1>
 			<section>
 				<section className="top-btns">
@@ -10,7 +11,7 @@ export function HomePage() {
 					<button>Categories</button>
 					<button>Next</button>
 				</section>
-				<section>Image list</section>
+				<PhotoIndex />
 			</section>
 		</section>
 	)
