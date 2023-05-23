@@ -8,7 +8,6 @@ export const photoService = {
 window.cs = photoService
 
 async function query(category) {
-	console.log('hello from fron service')
 	try {
 		return await httpService.get(STORAGE_KEY, category)
 	} catch (err) {
