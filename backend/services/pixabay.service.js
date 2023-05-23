@@ -6,10 +6,10 @@ module.exports = {
 
 const API_KEY = '25540812-faf2b76d586c1787d2dd02736'
 
-async function getPhotos(categoryName) {
-	console.log('herro pixabay')
+async function getPhotos(filterBy) {
+	let { category, pageNumber } = filterBy
 
-	let URL = `https://pixabay.com/api/?key=${API_KEY}&q=${categoryName}&per_page=27`
+	let URL = `https://pixabay.com/api/?key=${API_KEY}&q=${category}&page=${pageNumber}&per_page=9`
 
 	try {
 		console.log('pixabay service getPhotos try')
