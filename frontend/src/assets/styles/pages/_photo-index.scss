@@ -33,47 +33,62 @@
         height: 92vh;
     }
 
-    .category-modal {
+    .close-modal {
         position: absolute;
-        top: 20vh;
-        left: 35vw;
-        background-color: $aqua;
-        height: fit-content;
-        width: 35vw;
-        padding: 8px 0;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        color: #5e6c84;
+    }
 
-        .close-modal {
+    .modal-wrapper {
+        position: fixed;
+        z-index: 10;
+
+        .category-modal {
             position: absolute;
-            top: 0;
-            right: 0;
-        }
-        
-        span {
-            font-weight: 600;
-        }
-
-        .category-list {
-            height: 100%;
-            width: 100%;
+            height: fit-content;
+            width: 200px;
+            max-width: 35vw;
+            padding: 8px 12px;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            align-items: center;
-            justify-content: center;
+            align-items: start;
+            background: #ffffff;
+            box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px, #091e4214;
+            overflow: hidden;
 
-            .category-item {
-                width: 60%;
-                text-align: center;
-                border-radius: 3px;
-                padding: 3px 0;
-                &:hover {
-                    background-color: $dark-blue;
-                    color: $whiteish;
-                    cursor: pointer;
+            @include for-mobile-layout {
+                min-width: 50vw;
+            }
+            
+            span {
+                font-weight: 600;
+            }
+
+            .category-list {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                align-items: start;
+                justify-content: center;
+
+                .category-item {
+                    width: 100%;
+                    border-radius: 3px;
+                    padding: 3px 8px;
+                    &:hover {
+                        background-color: #091e4214;
+                        cursor: pointer;
+                    }
+                    &:active {
+                        background-color: #e4f0f6;
+                    }
                 }
             }
         }
@@ -95,12 +110,6 @@
 
         @include for-mobile-layout {
             height: 65vh;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 0;
-            right: 0;
         }
 
         .photo-data {

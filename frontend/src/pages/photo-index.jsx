@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { loadPhotos } from '../store/photo.actions.js'
 import { PhotoList } from '../components/photo-list.jsx'
 import { PhotoDetails } from '../components/photo-details.jsx'
 import Loader from '../assets/img/loader.svg'
+import { CategoryModal } from '../components/category-modal.jsx'
 
 export function PhotoIndex() {
 	const photos = useSelector((storeState) => storeState.photoModule.photos)
@@ -23,6 +24,11 @@ export function PhotoIndex() {
 	useEffect(() => {
 		loadPhotos(filterBy)
 	}, [filterBy])
+
+	// for modal
+	const categoryBtn = useRef()
+	const refDataBtn = categoryBtn
+	console.log('refDataBtn', refDataBtn)
 
 	function onToggleModal(modalType) {
 		switch (modalType) {
@@ -51,12 +57,9 @@ export function PhotoIndex() {
 	}
 
 	function onSort({ target }) {
-		console.log('herro sort', target)
 		let { value, name: field } = target
 		console.log(value)
-		console.log('filterBy before', filterBy)
 		setFilterBy((prevFilter) => ({ ...prevFilter, [field]: value }))
-		console.log('filterBy after', filterBy)
 	}
 
 	function onPhoto(photoId) {
@@ -76,7 +79,9 @@ export function PhotoIndex() {
 		<div className="photo-index">
 			<section className="photo-actions">
 				<button onClick={() => onPageChange(-1)}>Prev</button>
-				<button onClick={() => onToggleModal('category')}>Categories</button>
+				<button onClick={() => onToggleModal('category')} ref={categoryBtn}>
+					Categories
+				</button>
 				<select onChange={onSort} name="order" className="sorting">
 					<option value="popular">Popularity</option>
 					<option value="latest">Date</option>
@@ -88,30 +93,18 @@ export function PhotoIndex() {
 			</section>
 			{isCategoryModalOpen && (
 				<div className="modal-overlay">
-					<div className="category-modal">
-						<button
-							onClick={() => onToggleModal('category')}
-							className="close-modal"
-						>
-							X
-						</button>
-						<span>Select Category:</span>
-						<ul className="clean-list category-list">
-							{categories.map((cat) => (
-								<li
-									onClick={() => onCategoryChoice(cat)}
-									className="category-item"
-									key={cat}
-								>
-									{cat}
-								</li>
-							))}
-						</ul>
-					</div>
+					<CategoryModal
+						refDataBtn={refDataBtn}
+						categories={categories}
+						onToggleModal={onToggleModal}
+						onCategoryChoice={onCategoryChoice}
+					/>
 				</div>
 			)}
 			{isPhotoModalOpen && (
-				<PhotoDetails photo={photo} onToggleModal={onToggleModal} />
+				<div className="modal-overlay">
+					<PhotoDetails photo={photo} onToggleModal={onToggleModal} />
+				</div>
 			)}
 			<span className="page-number">{filterBy.pageNumber}</span>
 		</div>
