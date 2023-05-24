@@ -10,10 +10,11 @@ async function getPhotos(filterBy) {
 	let { category, pageNumber, order } = filterBy
 
 	let URL = `https://pixabay.com/api/?key=${API_KEY}&q=${category}&page=${pageNumber}&per_page=9&order=${order}`
+	console.log('URL', URL)
 
 	try {
 		const response = await axios.get(URL)
-		const { hits } = response.data
+		const { totalHits, hits } = response.data
 		const photos = hits.map((photo) => ({
 			id: photo.id,
 			tags: photo.tags,
@@ -23,7 +24,13 @@ async function getPhotos(filterBy) {
 			downloads: photo.downloads,
 			collections: photo.collections,
 		}))
-		return photos
+
+		const photosData = {
+			totalHits,
+			photos,
+		}
+
+		return photosData
 	} catch (err) {
 		console.error('ERROR in getting photos!', err)
 	}

@@ -1,13 +1,11 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
-const cookieParser = require('cookie-parser')
 
 const app = express()
 const http = require('http').createServer(app)
 
 // Express App Config
-app.use(cookieParser())
 app.use(express.json())
 
 if (process.env.NODE_ENV === 'production') {
@@ -37,8 +35,7 @@ app.get('/**', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030
 http.listen(port, () => {
-	logger.info('Server is running on port: ' + port)
+	console.log('Server is running on port: ' + port)
 })

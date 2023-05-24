@@ -1,19 +1,17 @@
-const photoService = require('./photo.service.js')
-
-const logger = require('../../services/logger.service.js')
+const pixabayService = require('./pixabay.service')
 
 async function getPhotos(req, res) {
 	try {
-		logger.debug('Getting Photos')
 		console.log('req.query', req.query)
 		const filterBy = {
 			category: req.query.category || '',
 			pageNumber: req.query.pageNumber || 1,
+			order: req.query.order || 'popular',
 		}
-		const photos = await photoService.query(filterBy)
-		res.json(photos)
+		const photosData = await pixabayService.getPhotos(filterBy)
+		res.json(photosData)
 	} catch (err) {
-		logger.error('Failed to get photos', err)
+		console.log('Failed to get photos', err)
 		res.status(500).send({ err: 'Failed to get photos' })
 	}
 }

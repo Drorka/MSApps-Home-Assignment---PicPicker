@@ -1,5 +1,4 @@
 const pixabayService = require('../../services/pixabay.service')
-const logger = require('../../services/logger.service')
 
 async function query(filterBy) {
 	try {
@@ -14,7 +13,7 @@ async function query(filterBy) {
 		// const pagePhotos = photos.slice(startIndex, endIndex)
 		// return pagePhotos
 	} catch (err) {
-		logger.error('cannot find photos', err)
+		console.log('cannot find photos', err)
 		throw err
 	}
 }
