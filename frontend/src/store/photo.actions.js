@@ -4,7 +4,8 @@ import { SET_PHOTOS } from './photo.reducer.js'
 
 export async function loadPhotos(filterBy) {
 	try {
-		const photos = await photoService.query(filterBy)
+		const { photos, totalHits } = await photoService.query(filterBy)
+		console.log('totalHits', totalHits)
 		store.dispatch({
 			type: SET_PHOTOS,
 			photos,
