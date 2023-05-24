@@ -18,26 +18,30 @@ export function PhotoDetails({ photo, onToggleModal }) {
 				<section className="photo-data">
 					<section className="data-numbers">
 						<div className="data-group">
-							<span>
+							<span className="data-icon">
 								<DownloadForOfflineIcon />
 							</span>
 							<div className="data-sub-group">
-								<span>{formattedDownloads}</span>
-								<span>Downloads</span>
+								<span className="data-number">{formattedDownloads}</span>
+								<span className="data-title">Downloads</span>
 							</div>
 						</div>
 						<div className="data-group">
-							<VisibilityIcon />
+							<span className="data-icon">
+								<VisibilityIcon />
+							</span>
 							<div className="data-sub-group">
-								<span>{formattedViews}</span>
-								<span>Views</span>
+								<span className="data-number">{formattedViews}</span>
+								<span className="data-title">Views</span>
 							</div>
 						</div>
 						<div className="data-group">
-							<CollectionsBookmarkIcon />
+							<span className="data-icon">
+								<CollectionsBookmarkIcon />
+							</span>
 							<div className="data-sub-group">
-								<span>{formattedCollections}</span>
-								<span>Collections</span>
+								<span className="data-number">{formattedCollections}</span>
+								<span className="data-title">Collections</span>
 							</div>
 						</div>
 					</section>
