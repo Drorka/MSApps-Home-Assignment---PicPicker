@@ -59,24 +59,26 @@ export function CategoryModal({
 	}
 
 	return (
-		<section
-			className="modal-wrapper"
-			style={getModalPos(refDataBtn)}
-			ref={modalRef}
-		>
-			<div className="category-modal">
-				<ul className="clean-list category-list">
-					{categories.map((category) => (
-						<li
-							onClick={() => onCategoryChoice(category)}
-							className={`category-item ${isSelected(category)}`}
-							key={category}
-						>
-							{category}
-						</li>
-					))}
-				</ul>
-			</div>
-		</section>
+		<div className="modal-overlay">
+			<section
+				className="modal-wrapper"
+				style={getModalPos(refDataBtn)}
+				ref={modalRef}
+			>
+				<div className="category-modal">
+					<ul className="clean-list category-list">
+						{categories.map((category) => (
+							<li
+								onClick={() => onCategoryChoice(category)}
+								className={`category-item ${isSelected(category)}`}
+								key={category}
+							>
+								{category}
+							</li>
+						))}
+					</ul>
+				</div>
+			</section>
+		</div>
 	)
 }
