@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 
 const app = express()
-const http = require('http').createServer(app)
+// const http = require('http').createServer(app)
 const photoRoutes = require('./routes/photo.routes')
 
 app.use(express.json())
@@ -15,6 +15,8 @@ app.use(cors(corsOptions))
 app.use('/api/photos', photoRoutes)
 
 const port = process.env.PORT || 3030
-http.listen(port, () => {
+let server = app.listen(port, () => {
 	console.log('Server is running on port: ' + port)
 })
+
+module.exports = { app, server }

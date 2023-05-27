@@ -10,6 +10,7 @@ describe('PhotosController', () => {
 				category: 'sports',
 				pageNumber: 1,
 				order: 'popular',
+				per_page: 9,
 			},
 		}
 		res = {

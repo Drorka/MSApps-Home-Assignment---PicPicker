@@ -1,5 +1,5 @@
-import request from 'supertest'
-import { app, server } from '../../src/app'
+const request = require('supertest')
+const { app, server } = require('../../src/server')
 
 describe('Photos API', () => {
 	describe('GET /api/photos', () => {
