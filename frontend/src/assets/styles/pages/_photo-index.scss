@@ -3,14 +3,45 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-top: 8px;
 
     .photos-actions {
         height: 5vh;
-        margin: 8px 0;
+        max-width: 90vw;
+        margin: 18px 0 8px 0;
         display: flex;
-        gap: 18px;
+        gap: 10px;
         * {text-transform: capitalize;}
+
+        @include for-mobile-layout {
+            .page-btn {
+                font-size: 0;
+                width: 20px;
+                padding: 3px;
+            }
+            * {
+                size: small;
+            }
+        }
+
+        .actions-container {
+            max-width: 90vw;
+            @include for-mobile-layout {
+                justify-content: space-between;
+                .page-btn {
+                    margin: 0 3px;
+                    width: 20px;
+                    font-size: 0;
+                    padding: 3px;
+                }
+                .category-btn {
+                    width: fit-content;
+                }
+                * {
+                    font-size: 14px;
+                    size: small;
+                }
+            }
+        }
     }
 
     .photos-container {

@@ -21,13 +21,15 @@ export function PhotosActions({
 	) : (
 		<ExpandMoreIcon />
 	)
+
 	return (
 		<section className="photos-actions">
-			<Stack spacing={2} direction="row">
+			<Stack spacing={2} direction="row" className="actions-container">
 				<Button
 					onClick={() => onPageChange(-1)}
 					variant="contained"
 					startIcon={<ArrowBackIosNewRoundedIcon />}
+					className="page-btn"
 				>
 					Prev
 				</Button>
@@ -36,11 +38,12 @@ export function PhotosActions({
 					ref={categoryBtn}
 					variant="contained"
 					endIcon={categoryButtonDirection}
+					className="category-btn"
 				>
 					Categories
 				</Button>
 
-				<FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+				<FormControl sx={{ m: 2, minWidth: 120 }} size="small">
 					<InputLabel id="sort-select-label">Sort By</InputLabel>
 					<Select
 						labelId="sort-select-label"
@@ -58,6 +61,7 @@ export function PhotosActions({
 					onClick={() => onPageChange(+1)}
 					variant="contained"
 					endIcon={<ArrowForwardIosRoundedIcon />}
+					className="page-btn"
 				>
 					Next
 				</Button>
