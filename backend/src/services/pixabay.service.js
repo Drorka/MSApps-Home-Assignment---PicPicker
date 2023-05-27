@@ -7,14 +7,19 @@ module.exports = {
 const API_KEY = '25540812-faf2b76d586c1787d2dd02736'
 const BASE_URL = 'https://pixabay.com/api/'
 
-async function getPhotos(filterBy) {
-	let { category, pageNumber, order } = filterBy
-
-	let URL = `${BASE_URL}?key=${API_KEY}&category=${category}&page=${pageNumber}&per_page=9&order=${order}`
-	console.log('URL', URL)
+async function getPhotos(searchCriteria) {
+	let { category, pageNumber, order, per_page = 9 } = searchCriteria
 
 	try {
-		const response = await axios.get(URL)
+		const response = await axios.get(BASE_URL, {
+			params: {
+				key: API_KEY,
+				category: category,
+				page: pageNumber,
+				per_page,
+				order: order,
+			},
+		})
 		const { totalHits, hits } = response.data
 		const photos = hits.map((photo) => ({
 			id: photo.id,
@@ -25,14 +30,9 @@ async function getPhotos(filterBy) {
 			downloads: photo.downloads,
 			collections: photo.collections,
 		}))
-
-		const photosData = {
-			totalHits,
-			photos,
-		}
-
-		return photosData
+		return { totalHits, photos }
 	} catch (err) {
-		console.error('ERROR in getting photos!', err)
+		console.error('ERROR in getting photos!', err, searchCriteria)
+		throw err
 	}
 }
