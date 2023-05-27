@@ -11,7 +11,7 @@ async function query(category) {
 	try {
 		return await httpService.get(STORAGE_KEY, category)
 	} catch (err) {
-		console.log('Failed to get photos (service)')
+		console.error('Failed to get photos (service)')
 		throw err
 	}
 }

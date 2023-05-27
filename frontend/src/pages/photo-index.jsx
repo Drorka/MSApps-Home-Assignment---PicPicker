@@ -57,7 +57,6 @@ export function PhotoIndex() {
 	// for modal
 	const categoryBtn = useRef()
 	const refDataBtn = categoryBtn
-	console.log('refDataBtn', refDataBtn)
 
 	function onToggleModal(modalType) {
 		switch (modalType) {
@@ -79,7 +78,6 @@ export function PhotoIndex() {
 
 	function onSort({ target }) {
 		let { value, name: field } = target
-		console.log(value, field)
 		setFilterBy((prevFilter) => ({ ...prevFilter, [field]: value }))
 	}
 
@@ -97,7 +95,6 @@ export function PhotoIndex() {
 			}))
 		} else {
 			let selectedPage = +pageAction.target.innerText
-			console.log('selectedPage', selectedPage)
 			setFilterBy((prevFilter) => ({
 				...prevFilter,
 				pageNumber: selectedPage,
@@ -130,6 +127,9 @@ export function PhotoIndex() {
 			/>
 			<section className="photos-container">
 				<PhotoList photos={photos} onPhoto={onPhoto} />
+				{/* <Grow>
+					<PhotoList photos={photos} onPhoto={onPhoto} />
+				</Grow> */}
 			</section>
 			{isCategoryModalOpen && (
 				<div className="modal-overlay">
