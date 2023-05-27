@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import { useClickOutside } from '../customHooks/is-clicked-outside'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark'
 import VisibilityIcon from '@mui/icons-material/Visibility'
@@ -5,13 +7,15 @@ import CloseIcon from '@mui/icons-material/Close'
 
 export function PhotoDetails({ photo, onToggleModal }) {
 	let { downloads, views, collections } = photo
-
 	const formattedDownloads = downloads.toLocaleString('en-US')
 	const formattedViews = views.toLocaleString('en-US')
 	const formattedCollections = collections.toLocaleString('en-US')
+	const modalRef = useRef(null)
+
+	useClickOutside(modalRef, onToggleModal, 'photo')
 
 	return (
-		<div className="photo-modal">
+		<div className="photo-modal" ref={modalRef}>
 			<CloseIcon
 				onClick={() => onToggleModal('photo')}
 				className="close-modal"

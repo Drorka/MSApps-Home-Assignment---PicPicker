@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+import { useClickOutside } from '../customHooks/is-clicked-outside'
+
 import CloseIcon from '@mui/icons-material/Close'
 
 export function CategoryModal({
@@ -15,6 +17,8 @@ export function CategoryModal({
 		setModalStyle(true)
 		setModalHeight(modalRef.current.getBoundingClientRect().height)
 	}, [modalStyle])
+
+	useClickOutside(modalRef, onToggleModal, 'category')
 
 	function getModalPos(refDataBtn) {
 		const rect = refDataBtn.current.getBoundingClientRect()
@@ -53,11 +57,10 @@ export function CategoryModal({
 			ref={modalRef}
 		>
 			<div className="category-modal">
-				<CloseIcon
+				{/* <CloseIcon
 					onClick={() => onToggleModal('category')}
 					className="close-modal"
-				/>
-				<span>Select Category:</span>
+				/> */}
 				<ul className="clean-list category-list">
 					{categories.map((cat) => (
 						<li
