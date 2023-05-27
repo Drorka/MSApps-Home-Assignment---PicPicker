@@ -18,7 +18,7 @@ export function PhotoIndex() {
 	)
 	const [photo, setPhoto] = useState({})
 	const [filterBy, setFilterBy] = useState({
-		category: 'dogs',
+		category: 'backgrounds',
 		pageNumber: 1,
 		order: 'popular',
 	})
@@ -126,7 +126,7 @@ export function PhotoIndex() {
 				categoryBtn={categoryBtn}
 				isCategoryModalOpen={isCategoryModalOpen}
 			/>
-			<section className="photo-container">
+			<section className="photos-container">
 				<PhotoList photos={photos} onPhoto={onPhoto} />
 			</section>
 			{isCategoryModalOpen && (
@@ -136,6 +136,7 @@ export function PhotoIndex() {
 						categories={categories}
 						onToggleModal={onToggleModal}
 						onCategoryChoice={onCategoryChoice}
+						currentCategory={filterBy.category}
 					/>
 				</div>
 			)}
@@ -153,6 +154,7 @@ export function PhotoIndex() {
 				hidePrevButton={true}
 				siblingCount={1}
 				boundaryCount={1}
+				className="pagination"
 			/>
 		</div>
 	)
