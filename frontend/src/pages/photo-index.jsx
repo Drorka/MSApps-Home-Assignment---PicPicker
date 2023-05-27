@@ -7,6 +7,7 @@ import { CategoryModal } from '../components/category-modal.jsx'
 import { PhotosActions } from '../components/photos-actions.jsx'
 import Pagination from '@mui/material/Pagination'
 import Loader from '../assets/img/loader.svg'
+import { Toaster } from 'react-hot-toast'
 
 export function PhotoIndex() {
 	const photos = useSelector((storeState) => storeState.photoModule.photos)
@@ -119,6 +120,7 @@ export function PhotoIndex() {
 
 	return (
 		<div className="photo-index">
+			<Toaster />
 			<PhotosActions
 				onPageChange={onPageChange}
 				onToggleModal={onToggleModal}

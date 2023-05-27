@@ -1,6 +1,7 @@
 import { photoService } from '../services/photo.service.js'
 import { store } from '../store/store.js'
 import { SET_PHOTOS } from './photo.reducer.js'
+import { toast } from 'react-hot-toast'
 
 export async function loadPhotos(filterBy) {
 	try {
@@ -11,7 +12,6 @@ export async function loadPhotos(filterBy) {
 			totalHits,
 		})
 	} catch (err) {
-		console.log('Cannot load photos', err)
-		throw err
+		toast.error('Something went wrong, please try again later')
 	}
 }
