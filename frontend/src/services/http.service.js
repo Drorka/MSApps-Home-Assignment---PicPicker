@@ -12,7 +12,7 @@ const axios = Axios.create({
 
 async function get(endpoint, data) {
 	try {
-		const res = await axios(endpoint, { params: data })
+		const res = await axios.get(endpoint, { params: data })
 		return res.data
 	} catch (error) {
 		console.error(
