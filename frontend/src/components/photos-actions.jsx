@@ -11,6 +11,8 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 
 export function PhotosActions({
 	onPageChange,
+	currentPage,
+	totalPages,
 	onToggleModal,
 	onSort,
 	categoryBtn,
@@ -26,9 +28,10 @@ export function PhotosActions({
 		<section className="photos-actions">
 			<Stack spacing={2} direction="row" className="actions-container">
 				<Button
-					onClick={() => onPageChange(-1)}
+					onClick={() => onPageChange(currentPage - 1)}
 					variant="contained"
 					startIcon={<ArrowBackIosNewRoundedIcon />}
+					disabled={currentPage === 1}
 					className="page-btn"
 				>
 					Prev
@@ -50,6 +53,7 @@ export function PhotosActions({
 						id="sort-select"
 						label="Sort By"
 						name="order"
+						defaultValue="popular"
 						onChange={onSort}
 					>
 						<MenuItem value="popular">Popularity</MenuItem>
@@ -58,9 +62,10 @@ export function PhotosActions({
 				</FormControl>
 
 				<Button
-					onClick={() => onPageChange(+1)}
+					onClick={() => onPageChange(currentPage + 1)}
 					variant="contained"
 					endIcon={<ArrowForwardIosRoundedIcon />}
+					disabled={currentPage === totalPages}
 					className="page-btn"
 				>
 					Next
