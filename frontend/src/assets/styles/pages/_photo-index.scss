@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 
-    .photo-actions {
+    .photos-actions {
         height: 5vh;
         margin: 8px 0;
         display: flex;
@@ -77,6 +77,7 @@
                 gap: 8px;
                 align-items: start;
                 justify-content: center;
+                text-transform:capitalize;
 
                 .category-item {
                     width: 100%;
