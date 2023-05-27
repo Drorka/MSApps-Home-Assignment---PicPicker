@@ -18,7 +18,7 @@ export function PhotoIndex() {
 		(storeState) => storeState.systemModule.isLoading
 	)
 	const [photo, setPhoto] = useState({})
-	const [filterBy, setFilterBy] = useState({
+	const [searchCriteria, setSearchCriteria] = useState({
 		category: 'backgrounds',
 		pageNumber: 1,
 		order: 'popular',
@@ -49,10 +49,10 @@ export function PhotoIndex() {
 	]
 
 	useEffect(() => {
-		loadPhotos(filterBy)
-	}, [filterBy])
+		loadPhotos(searchCriteria)
+	}, [searchCriteria])
 
-	const totalPages = Math.trunc(totalHits / 9)
+	const totalPages = Math.ceil(totalHits / 9)
 
 	// for modal
 	const categoryBtn = useRef()
@@ -72,34 +72,23 @@ export function PhotoIndex() {
 	}
 
 	function onCategoryChoice(categoryChoice) {
-		setFilterBy((prevFilter) => ({ ...prevFilter, category: categoryChoice }))
+		setSearchCriteria((prevCriteria) => ({
+			...prevCriteria,
+			category: categoryChoice,
+		}))
 		setIsCategoryModalOpen(false)
 	}
 
 	function onSort({ target }) {
 		let { value, name: field } = target
-		setFilterBy((prevFilter) => ({ ...prevFilter, [field]: value }))
+		setSearchCriteria((prevCriteria) => ({ ...prevCriteria, [field]: value }))
 	}
 
-	// Users can navigate between pages by using the 'Prev' & 'Next' buttons, or by selecting a specific page.
-	// Prev & Next buttons send the function a value of -1 or +1 accordingly.
-	// If one of those values is sent, the function updates the Filter by adding or subtracting 1 from the page number, thus creating a new data call.
-	// Selecting a specific page sends the event to the function.
-	// The function turns the button text into a number, and updates the filter by changing the page number.
-	function onPageChange(pageAction) {
-		if (pageAction === 1 || pageAction === -1) {
-			if (filterBy.pageNumber === 1 && pageAction === -1) return
-			setFilterBy((prevFilter) => ({
-				...prevFilter,
-				pageNumber: prevFilter.pageNumber + pageAction,
-			}))
-		} else {
-			let selectedPage = +pageAction.target.innerText
-			setFilterBy((prevFilter) => ({
-				...prevFilter,
-				pageNumber: selectedPage,
-			}))
-		}
+	function onPageChange(selectedPage) {
+		setSearchCriteria((prevCriteria) => ({
+			...prevCriteria,
+			pageNumber: selectedPage,
+		}))
 	}
 
 	function onPhoto(photoId) {
@@ -120,6 +109,8 @@ export function PhotoIndex() {
 			<Toaster />
 			<PhotosActions
 				onPageChange={onPageChange}
+				currentPage={searchCriteria.pageNumber}
+				totalPages={totalPages}
 				onToggleModal={onToggleModal}
 				onSort={onSort}
 				categoryBtn={categoryBtn}
@@ -127,31 +118,24 @@ export function PhotoIndex() {
 			/>
 			<section className="photos-container">
 				<PhotoList photos={photos} onPhoto={onPhoto} />
-				{/* <Grow>
-					<PhotoList photos={photos} onPhoto={onPhoto} />
-				</Grow> */}
 			</section>
 			{isCategoryModalOpen && (
-				<div className="modal-overlay">
-					<CategoryModal
-						refDataBtn={refDataBtn}
-						categories={categories}
-						onToggleModal={onToggleModal}
-						onCategoryChoice={onCategoryChoice}
-						currentCategory={filterBy.category}
-					/>
-				</div>
+				<CategoryModal
+					refDataBtn={refDataBtn}
+					categories={categories}
+					onToggleModal={onToggleModal}
+					onCategoryChoice={onCategoryChoice}
+					currentCategory={searchCriteria.category}
+				/>
 			)}
 			{isPhotoModalOpen && (
-				<div className="modal-overlay">
-					<PhotoDetails photo={photo} onToggleModal={onToggleModal} />
-				</div>
+				<PhotoDetails photo={photo} onToggleModal={onToggleModal} />
 			)}
 			<Pagination
 				count={totalPages}
 				defaultPage={1}
-				page={filterBy.pageNumber}
-				onChange={(event) => onPageChange(event)}
+				page={searchCriteria.pageNumber}
+				onChange={(event, value) => onPageChange(value)}
 				hideNextButton={true}
 				hidePrevButton={true}
 				siblingCount={1}
