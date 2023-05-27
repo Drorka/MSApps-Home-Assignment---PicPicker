@@ -3,9 +3,9 @@ import { store } from '../store/store.js'
 import { SET_PHOTOS } from './photo.reducer.js'
 import { toast } from 'react-hot-toast'
 
-export async function loadPhotos(filterBy) {
+export async function loadPhotos(searchCriteria) {
 	try {
-		const { photos, totalHits } = await photoService.query(filterBy)
+		const { photos, totalHits } = await photoService.query(searchCriteria)
 		store.dispatch({
 			type: SET_PHOTOS,
 			photos,
