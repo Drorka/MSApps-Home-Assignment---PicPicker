@@ -1,5 +1,5 @@
-const { getPhotos } = require('../controllers/photos.controller')
-const pixabayService = require('../services/pixabay.service')
+const { getPhotos } = require('../../src/controllers/photo.controller')
+const pixabayService = require('../../src/services/pixabay.service')
 
 describe('PhotosController', () => {
 	let req, res

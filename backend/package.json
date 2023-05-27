@@ -4,7 +4,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Dror Karpfen",
@@ -15,5 +16,8 @@
     "express": "^4.18.2",
     "nodemon": "^2.0.20"
   },
-  "description": "msapps home assignment backend server"
+  "description": "msapps home assignment backend server",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
 }
