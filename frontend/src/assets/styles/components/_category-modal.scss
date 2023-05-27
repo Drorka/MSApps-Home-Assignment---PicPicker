@@ -1,0 +1,82 @@
+.modal-wrapper {
+    position: fixed;
+    z-index: 10;
+
+    .category-modal {
+        position: absolute;
+        height: fit-content;
+        max-height: 60vh;
+        width: 200px;
+        max-width: 35vw;
+        padding: 8px 12px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        background: #ffffff;
+        box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px, #091e4214;
+        overflow-y: scroll;
+
+        @include for-mobile-layout {
+            min-width: 50vw;
+        }
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: 5px;
+            background-color: #DFE9EB;
+        }
+        
+        &::-webkit-scrollbar-track:hover {
+            background-color: #DFE9EB;
+        }
+        
+        &::-webkit-scrollbar-track:active {
+            background-color: #DFE9EB;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #C1C1C1;
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: #9C9C9C;
+        }
+        
+        &::-webkit-scrollbar-thumb:active {
+            background-color: #9C9C9C;
+        }
+
+        .category-list {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: start;
+            justify-content: center;
+            text-transform:capitalize;
+
+            .category-item {
+                width: 100%;
+                border-radius: 3px;
+                padding: 3px 8px;
+                &:hover {
+                    background-color: #091e4214;
+                    cursor: pointer;
+                }
+                &:active {
+                    background-color: #e4f0f6;
+                }
+                
+                &.selected {
+                    background-color: #e4f0f6;
+                }
+            }
+        }
+    }
+}
