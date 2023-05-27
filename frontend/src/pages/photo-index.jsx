@@ -124,6 +124,7 @@ export function PhotoIndex() {
 				onToggleModal={onToggleModal}
 				onSort={onSort}
 				categoryBtn={categoryBtn}
+				isCategoryModalOpen={isCategoryModalOpen}
 			/>
 			<section className="photo-container">
 				<PhotoList photos={photos} onPhoto={onPhoto} />
