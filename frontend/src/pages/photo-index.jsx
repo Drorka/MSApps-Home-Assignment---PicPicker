@@ -116,9 +116,7 @@ export function PhotoIndex() {
 				categoryBtn={categoryBtn}
 				isCategoryModalOpen={isCategoryModalOpen}
 			/>
-			<section className="photos-container">
-				<PhotoList photos={photos} onPhoto={onPhoto} />
-			</section>
+			<PhotoList photos={photos} onPhoto={onPhoto} />
 			{isCategoryModalOpen && (
 				<CategoryModal
 					refDataBtn={refDataBtn}

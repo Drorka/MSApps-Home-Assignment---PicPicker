@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route } from 'react-router-dom'
 
 import { AppHeader } from './components/app-header'
 import { PhotoIndex } from './pages/photo-index'

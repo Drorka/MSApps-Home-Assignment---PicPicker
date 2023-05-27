@@ -13,5 +13,5 @@ export function useClickOutside(ref, callback, modalType) {
 		return () => {
 			document.onmousedown = null
 		}
-	}, [])
+	})
 }
