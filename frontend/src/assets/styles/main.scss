@@ -7,13 +7,15 @@
 @import "basics/layout";
 @import "basics/base";
 
-// Views
+// Pages
 @import "pages/photo-index";
 
 // Components
 @import "components/app-header";
 @import "components/photo-list";
+@import "components/photos-actions";
 @import "components/category-modal";
+@import "components/photo-details";
 
 
 
