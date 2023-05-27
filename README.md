@@ -10,7 +10,7 @@ The app is built with **React.js, Node.js, Express.js, REST API, SASS**.
 
 ## Installation
 
-1. Clone the repository: git clone https://github.com/drorka/project-name.git
+1. Clone the repository
 
 ```
 git clone https://github.com/Drorka/MSApps-Home-Assignment---PicPicker
@@ -32,7 +32,7 @@ npm i
 npm start
 ```
 
-5. Access the application at http://localhost:3000.
+4. Access the application at http://localhost:3000.
 
 ## Usage
 
